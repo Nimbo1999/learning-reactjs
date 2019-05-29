@@ -35,7 +35,7 @@ class Main extends Component {
                     <Row gutter={16}>
                         {clientes.map(client =>(
 
-                            <Col span={12}>
+                            <Col span={8}>
                             <article key={client.id}>
                                 <strong>{client.nome}</strong><br/>
                                 <Link to={`/cliente/${client.id}`}>Acessar</Link>

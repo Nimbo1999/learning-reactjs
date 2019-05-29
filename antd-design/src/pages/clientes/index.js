@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import api from '../../services/api'
 import './style.css'
 import { Link } from 'react-router-dom'
-import { Button,  Row, Col } from 'antd';
+import { Button,  Row } from 'antd';
 
 
 class Cliente extends Component{
