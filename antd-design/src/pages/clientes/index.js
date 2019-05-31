@@ -19,6 +19,8 @@ class Cliente extends Component{
         this.setState({
             clientes: response.data
         })
+
+        console.log(response)
     }
 
     render(){
@@ -26,6 +28,7 @@ class Cliente extends Component{
 
         return (
             <Row className="client-info">
+                <img src={clientes.imagem} alt="Imagem do cliente" />
                 <h1>Nome: {clientes.nome}</h1>
                 <p>Endereço: {clientes.endereco}</p>
                 <p>Idade: {clientes.idade}</p>

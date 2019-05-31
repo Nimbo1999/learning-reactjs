@@ -1,0 +1,14 @@
+#cadastro-form {
+    margin-top: 1em;
+}
+
+div h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.button-submit {
+    margin-top: 1em;
+}

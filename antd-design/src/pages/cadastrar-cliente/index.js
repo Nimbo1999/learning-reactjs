@@ -1,50 +1,80 @@
 import React, { Component } from 'react'
 import api  from '../../services/api'
 import './style.css'
-import Axios from 'axios';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-
+import { Form, Input, Col, Button } from 'antd';
+import FormItem from 'antd/lib/form/FormItem';
 
 class CadastrarCliente extends Component {
 
-    state = {
-        clientes: []
+    constructor(props){
+        super(props)
+        this.state = {
+            nome: '',
+            endereco: '',
+            idade: null,
+            imagem: null
+        }
     }
 
-    componentDidMount(){
-        this.loadClients();
+    // Envia meu post para api
+    submitHandler = e => {
+        e.preventDefault()
+        console.log(this.state)
+        this.postCliente()
     }
 
-    loadClients = async () => {
-        const response = await api.get("/clientes/")
-        
-        this.setState({
-            clientes: response.data
-        })
+    postCliente = async () =>{
+        try{
+            const data = this.state
+            const response = await api.post('/clientes/', data)
+            console.log('Returned data: ', response)
+        }catch(e){
+            console.log("Falha na request: " + e)
+        }
     }
 
-    insertClients = (Nome, Endereco, Idade) => {
-        Axios.post("/clientes/", {
-            nome: Nome,
-            endereco: Endereco,
-            idade: Idade
-        })
+    changeHandler = (e) => {
+
+        this.setState({[e.target.name]: e.target.value})
+
+    }
+
+    fileSelectHandles = event =>{
+        console.log(event.target.files[0]);
     }
 
     render(){
-        const { clientes } = this.state.clientes;
+
+        const { nome, endereco, idade } = this.state
 
         return (
-            <Form className="client-form">
+            <Col span={12} offset={6}>
 
-                <Form.Item>
-                    <Input
-                    prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    placeholder="Nome"
-                    />
-                </Form.Item>
-                
-            </Form>
+                <h1>Cadastro de Clientes</h1>
+
+                <Form id="cadastro-form" labelCol={{ span: 4 }} wrapperCol={{ span: 16 }} onSubmit={this.submitHandler}>
+                    
+                    <Form.Item label="Nome:">
+                        <Input name="nome" value={nome} onChange={this.changeHandler} />
+                    </Form.Item>
+                    <Form.Item label="Endereço:">
+                        <Input name="endereco" value={endereco} onChange={this.changeHandler} />
+                    </Form.Item>
+                    <Form.Item label="Idade:">
+                        <Input name="idade" value={idade} onChange={this.changeHandler} />
+                    </Form.Item>
+                    
+                    <input type="file" name="imagem" onChange={this.fileSelectHandles} hidden />
+                     
+                    <FormItem>
+                        <Button className="button-submit" type="primary" htmlType="submit">
+                            Cadastrar
+                        </Button>
+                    </FormItem>
+
+                </Form>
+
+            </Col>
         )
     }
 

@@ -4,6 +4,7 @@ class Cliente(models.Model):
     nome = models.CharField(max_length=50)
     endereco = models.CharField(max_length=50)
     idade = models.IntegerField()
+    imagem = models.FileField(upload_to="media/%Y/%m/%d/", null=True, blank=True)
 
     def __str__(self):
         return self.nome
