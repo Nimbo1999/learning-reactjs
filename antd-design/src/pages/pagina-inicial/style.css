@@ -1,0 +1,42 @@
+.Quadrado1{
+    width: auto;
+    height: 100px;
+    background: #f55;
+}
+
+.Quadrado2{
+    width: auto;
+    height: 100px;
+    background: #0f5;
+}
+
+.Quadrado3{
+    width: auto;
+    height: 100px;
+    background: #ff5;
+}
+
+.Quadrado4{
+    width: auto;
+    height: 100px;
+    background: #555;
+}
+
+.container{
+    padding-left: 1em;
+    padding-right: 0;
+    margin-top: 60px;
+}
+
+.conteudo {
+    overflow: initial;
+}
+
+.ant-row {
+    margin-bottom: 1em;
+}
+
+.contentSider {
+    margin-top: 60px;
+    width: 100%;
+}
