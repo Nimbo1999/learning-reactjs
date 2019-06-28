@@ -1,12 +1,27 @@
 import React from 'react';
 import './style.css';
-import { Menu, Icon, Col, Row, Layout, Breadcrumb, Table } from 'antd';
+import { Menu, Icon, Col, Row, Layout, Breadcrumb, Table, Button } from 'antd';
+import { Link } from 'react-router-dom'
+import api from '../../services/api'
 
 
 class PaginaInicial extends React.Component{
 
     state = {
         collapsed: true,
+        clientes: [],
+    }
+
+    componentDidMount(){
+        this.loadClients();
+    }
+
+    loadClients = async () => {
+        const response = await api.get("/clientes/")
+        
+        this.setState({
+            clientes: response.data
+        })
     }
 
     toggleCollapsed = () => {
@@ -22,102 +37,32 @@ class PaginaInicial extends React.Component{
         const columns = [
             {
                 title: 'Primeiro Nome',
-                dataIndex: 'firstName',
+                dataIndex: 'nome',
                 key: 'firstName',
                 width: 200
                 
             },
             {
-                title: 'Ultimo Nome',
-                dataIndex: 'lastName',
-                key: 'lastName',
+                title: 'Endereço',
+                dataIndex: 'endereco',
+                key: 'endereco',
                 width: 200
             },
             {
                 title: 'Idade',
-                dataIndex: 'age',
-                key: 'age',
+                dataIndex: 'idade',
+                key: 'idade',
                 width: 200
             },
             {
-                title: 'Endereço',
-                dataIndex: 'address',
-                key: 'address'
-            }
+                title: 'ID',
+                dataIndex: 'id',
+                key: 'perfil',
+                width: 200
+            },
         ]
 
-        const data = [
-            {
-                key: '1',
-                firstName: 'Matheus',
-                lastName: 'Lopes',
-                age: 20,
-                address: 'Arniqueiras',
-            },
-            {
-                key: '2',
-                firstName: 'Gabriel',
-                lastName: 'Lopes',
-                age: 20,
-                address: 'Arniqueiras',
-            },
-            {
-                key: '3',
-                firstName: 'Paulo',
-                lastName: 'Rodriguez',
-                age: 62,
-                address: 'Águas Claras',
-            },
-            {
-                key: '4',
-                firstName: 'Neide',
-                lastName: 'Oliveira',
-                age: 33,
-                address: 'Ceilandia',
-            },
-            {
-                key: '5',
-                firstName: 'Silvio',
-                lastName: 'Suguino',
-                age: 22,
-                address: 'Samambaia',
-            },
-            {
-                key: '6',
-                firstName: 'Carlos',
-                lastName: 'Eduardo',
-                age: 40,
-                address: 'Cruzeiro',
-            },
-            {
-                key: '7',
-                firstName: 'Brenda',
-                lastName: 'Stefane',
-                age: 22,
-                address: 'Taguatinga',
-            },
-            {
-                key: '8',
-                firstName: 'Igor',
-                lastName: 'Nunes',
-                age: 19,
-                address: 'Taguatinga',
-            },
-            {
-                key: '9',
-                firstName: 'Indinária',
-                lastName: 'Santos',
-                age: 19,
-                address: 'Areal',
-            },
-            {
-                key: '10',
-                firstName: 'Arthur',
-                lastName: 'Lopes',
-                age: 14,
-                address: 'Asa Norte',
-            },
-        ]
+        const data = this.state.clientes
 
         return (
                 <Layout>
@@ -137,15 +82,17 @@ class PaginaInicial extends React.Component{
                             </Menu.Item>
 
                             <Menu.Item className="menu-item">
-                                <Icon type="profile" />
-                                Clientes
+                                <Link to="/">
+                                    <Icon type="profile" />
+                                    Clientes
+                                </Link>
                             </Menu.Item>
 
                             <Menu.Item className="menu-item">
-                                <a href="/cadastrar/cliente">
+                                <Link to="/cadastrar/cliente">
                                     <Icon type="plus" />
                                     Cadastrar um Cliente
-                                </a>
+                                </Link>
                             </Menu.Item>
                     
                             <Menu.Item className="menu-item">

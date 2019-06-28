@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import api  from '../../services/api'
 import './style.css'
-import { Form, Input, Col, Button } from 'antd';
+import { Link } from 'react-router-dom'
+import { Form, Input, Col, Row, Button, notification } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
 
 class CadastrarCliente extends Component {
@@ -21,6 +22,10 @@ class CadastrarCliente extends Component {
         e.preventDefault()
         console.log(this.state)
         this.postCliente()
+        notification.open({
+            message: 'Sucesso',
+            description: 'Cliente cadastrado com sucesso.'
+        })
     }
 
     postCliente = async () =>{
@@ -66,11 +71,23 @@ class CadastrarCliente extends Component {
                     
                     <input type="file" name="imagem" onChange={this.fileSelectHandles} hidden />
                      
-                    <FormItem>
-                        <Button className="button-submit" type="primary" htmlType="submit">
-                            Cadastrar
-                        </Button>
-                    </FormItem>
+                     <Row>
+                        <Col span={12}>
+                            <FormItem>
+                                <Button className="button-submit" type="primary" htmlType="submit">
+                                    Cadastrar
+                                </Button>
+                            </FormItem>
+                        </Col>
+
+                        <Col span={12}>
+                            <FormItem>
+                                <Button className="button-submit" type="primary">
+                                    <Link to={`/pagina-inicial`}>Voltar</Link>
+                                </Button>
+                            </FormItem>
+                        </Col>
+                    </Row>
 
                 </Form>
 
