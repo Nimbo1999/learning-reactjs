@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import api from '../../services/api'
 import './style.css'
 import { Link } from 'react-router-dom'
-import { Layout, Row, Col, Button } from 'antd'
+import { Layout, Row, Col } from 'antd'
 
 class ClientList extends Component {
 
@@ -25,6 +25,7 @@ class ClientList extends Component {
     render(){
 
         const { clientes } = this.state
+        const userDefault = "http://localhost:8000/media/media/2019/05/30/user.jpg";
 
         return (
             <div className="client-list">
@@ -42,6 +43,12 @@ class ClientList extends Component {
 
                             <Col span={8} key={client.id}>
                                 <article>
+                                    <span>
+                                        <img style={{width:'50px', height:'50px'}}
+                                            src={client.imagem === null ? userDefault : client.imagem}
+                                            alt="imagem do usuário"
+                                        />
+                                    </span>
                                     <strong>{client.nome}</strong><br/>
                                     <Link to={`/cliente/${client.id}`}>Acessar</Link>
                                 </article>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import api  from '../../services/api'
 import './style.css'
-import { Link } from 'react-router-dom'
-import { Form, Input, Col, Row, Button, notification } from 'antd';
+import { Link, Redirect } from 'react-router-dom'
+import { Form, Input, Col, Row, Button, notification, Icon } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
 
 class CadastrarCliente extends Component {
@@ -22,10 +22,7 @@ class CadastrarCliente extends Component {
         e.preventDefault()
         console.log(this.state)
         this.postCliente()
-        notification.open({
-            message: 'Sucesso',
-            description: 'Cliente cadastrado com sucesso.'
-        })
+        setTimeout(this.redirecionador, 2000)
     }
 
     postCliente = async () =>{
@@ -33,9 +30,21 @@ class CadastrarCliente extends Component {
             const data = this.state
             const response = await api.post('/clientes/', data)
             console.log('Returned data: ', response)
+            notification.open({
+                message: 'Sucesso',
+                description: 'Cliente cadastrado com sucesso.',
+                duration: 3,
+                icon: <Icon type="check" />,
+            })
         }catch(e){
             console.log("Falha na request: " + e)
         }
+    }
+
+    redirecionador = () =>{
+        this.setState({
+            redirecionar: true,
+        })
     }
 
     changeHandler = (e) => {
@@ -52,6 +61,9 @@ class CadastrarCliente extends Component {
 
         const { nome, endereco, idade } = this.state
 
+        if(this.state.redirecionar){
+            return <Redirect to="/" />
+        }
         return (
             <Col className="cadastro-de-clientes">
 
@@ -71,18 +83,18 @@ class CadastrarCliente extends Component {
                     
                     <input type="file" name="imagem" onChange={this.fileSelectHandles} hidden />
                      
-                     <Row>
-                        <Col xs={4}>
+                     <Row gutter={34} style={{padding: '0px 20px'}}>
+                        <Col xs={12}>
                             <FormItem>
-                                <Button className="button-submit" type="primary" htmlType="submit">
+                                <Button className="button-submit" style={{width: '100%'}} type="primary" htmlType="submit">
                                     Cadastrar
                                 </Button>
                             </FormItem>
                         </Col>
 
-                        <Col>
+                        <Col xs={12}>
                             <FormItem>
-                                <Button className="button-submit">
+                                <Button className="button-submit" style={{width: '100%'}}>
                                     <Link to={`/`}>Voltar</Link>
                                 </Button>
                             </FormItem>

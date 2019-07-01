@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import { Menu, Icon, Col, Row, Layout, Breadcrumb, Table, Button } from 'antd';
+import { Menu, Icon, Col, Row, Layout, Breadcrumb, Table, Button, notification } from 'antd';
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
@@ -39,35 +39,59 @@ class PaginaInicial extends React.Component{
                 title: 'Primeiro Nome',
                 dataIndex: 'nome',
                 key: 'firstName',
-                width: 200
+                width: 10
                 
             },
             {
                 title: 'Endereço',
                 dataIndex: 'endereco',
                 key: 'endereco',
-                width: 200
+                width: 10
             },
             {
                 title: 'Idade',
                 dataIndex: 'idade',
                 key: 'idade',
-                width: 200
+                width: 10
             },
             {
                 title: 'Opções',
                 dataIndex: 'id',
                 render: (id) => {
+                    const userid = id
                     return (
-                    <Row>
-                        <Col xs={12}>
-                            <Button>
-                                <Link to={`/cliente/${id}`}>Acessar Cliente</Link>
+                    <Row gutter={8}>
+                        <Col xs={11}>
+                            <Button style={{width:'100%', overflow:'hidden'}}>
+                                <Link to={`/cliente/${id}`}>Acessar</Link>
                             </Button>
                         </Col>
-                        <Col xs={12}>
-                            <Button>
-                                <Link to={`/cliente/${id}`}>Editar Cliente</Link>
+                        <Col xs={11}>
+                            <Button style={{width:'100%', overflow:'hidden'}}>
+                                <Link to={`/cliente/editar/${id}`}>Editar</Link>
+                            </Button>
+                        </Col>
+                        <Col xs={2}>
+                            <Button type="danger" onClick={() => {
+                                notification.open({
+                                    message: 'Excluir Cliente',
+                                    description: <p>Deseja realmente excluir esse cliente?
+                                        <Button onClick={async() =>{
+                                            try{
+                                                const response = await api.delete(`/clientes/${userid}/`)
+                                                console.log(response);
+                                                
+                                            }catch(e){
+                                                console.log(e)
+                                            }
+                                        }}>Sim</Button>
+                                        <Button>Não</Button>
+                                        </p>,
+                                    duration: 3,
+                                    icon: <Icon type="loading" />,
+                                })
+                            }} >
+                                <Icon type="delete" />
                             </Button>
                         </Col>
                     </Row>
@@ -100,7 +124,7 @@ class PaginaInicial extends React.Component{
                             <Menu.Item className="menu-item">
                                 <Link to="/clientes">
                                     <Icon type="profile" />
-                                    Clientes
+                                    Meus Clientes
                                 </Link>
                             </Menu.Item>
 
@@ -141,7 +165,7 @@ class PaginaInicial extends React.Component{
                                 </Col>
                             </Row>
                             
-                        <Table style={{overflow: 'auto'}} columns={columns} dataSource={data}/>
+                        <Table style={{overflow: 'auto'}} columns={columns} dataSource={data} rowKey="id"/>
 
                         </Content>
                     </Layout>

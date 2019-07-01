@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import api from '../../services/api'
 import './style.css'
 import { Link } from 'react-router-dom'
 import { Button,  Row } from 'antd';
 
 
-class Cliente extends Component{
+class Cliente extends React.Component{
 
     state = {
         clientes: {},
@@ -29,7 +29,7 @@ class Cliente extends Component{
         return (
             <Row className="client-info">
                 <span>
-                    <img src={clientes.imagem} alt="Imagem do cliente" />
+                    {clientes.imagem === null ? <></> : <img src={clientes.imagem} alt="Imagem do cliente" /> }
                 </span>
                 <h1>Nome: {clientes.nome}</h1>
                 <p>Endereço: {clientes.endereco}</p>

@@ -50,3 +50,10 @@
     background: #04503f;
     color: #fff;
 }
+
+.client-list article span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
