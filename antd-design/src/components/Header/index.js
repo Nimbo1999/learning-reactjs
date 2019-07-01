@@ -9,7 +9,7 @@ function Header() {
     return(
         <Layout>
             <Header id="main-header" style={{zIndex: 1}}>
-                Responsive Layout
+                Aplicativo de Clientes
             </Header>
         </Layout>
     )

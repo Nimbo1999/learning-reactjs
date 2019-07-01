@@ -67,12 +67,13 @@ class PaginaInicial extends React.Component{
                             </Button>
                         </Col>
                         <Col xs={11}>
-                            <Button style={{width:'100%', overflow:'hidden'}}>
+                            <Button type="dashed" style={{width:'100%', overflow:'hidden'}}>
                                 <Link to={`/cliente/editar/${id}`}>Editar</Link>
                             </Button>
                         </Col>
                         <Col xs={2}>
                             <Button type="danger" onClick={() => {
+                                const key = `open${Date.now()}`;
                                 notification.open({
                                     message: 'Excluir Cliente',
                                     description: <p>Deseja realmente excluir esse cliente?
@@ -85,9 +86,10 @@ class PaginaInicial extends React.Component{
                                                 console.log(e)
                                             }
                                         }}>Sim</Button>
-                                        <Button>Não</Button>
+                                        <Button onClick={() => notification.close(key) }>Não</Button>
                                         </p>,
                                     duration: 3,
+                                    key,
                                     icon: <Icon type="loading" />,
                                 })
                             }} >
