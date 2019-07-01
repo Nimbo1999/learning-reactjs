@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import api from '../../services/api'
 import './style.css'
 import { Link } from 'react-router-dom'
-import { Layout, Row, Col } from 'antd'
+import { Layout, Row, Col, Button } from 'antd'
 
-class Main extends Component {
+class ClientList extends Component {
 
     state = {
         clientes: []
@@ -33,6 +33,11 @@ class Main extends Component {
                     <h1>Clientes</h1>
 
                     <Row gutter={16}>
+                        <Row>
+                            <article>
+                                <Link to="/">VOLTAR</Link>
+                            </article>
+                        </Row>
                         {clientes.map(client =>(
 
                             <Col span={8} key={client.id}>
@@ -51,4 +56,4 @@ class Main extends Component {
     }
 }
 
-export default Main
+export default ClientList

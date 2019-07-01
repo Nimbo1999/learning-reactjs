@@ -53,11 +53,11 @@ class CadastrarCliente extends Component {
         const { nome, endereco, idade } = this.state
 
         return (
-            <Col span={12} offset={6}>
+            <Col className="cadastro-de-clientes">
 
                 <h1>Cadastro de Clientes</h1>
 
-                <Form id="cadastro-form" labelCol={{ span: 4 }} wrapperCol={{ span: 16 }} onSubmit={this.submitHandler}>
+                <Form labelCol={{ span: 4 }} wrapperCol={{ span: 16 }} onSubmit={this.submitHandler}>
                     
                     <Form.Item label="Nome:">
                         <Input name="nome" value={nome} onChange={this.changeHandler} />
@@ -72,7 +72,7 @@ class CadastrarCliente extends Component {
                     <input type="file" name="imagem" onChange={this.fileSelectHandles} hidden />
                      
                      <Row>
-                        <Col span={12}>
+                        <Col xs={4}>
                             <FormItem>
                                 <Button className="button-submit" type="primary" htmlType="submit">
                                     Cadastrar
@@ -80,10 +80,10 @@ class CadastrarCliente extends Component {
                             </FormItem>
                         </Col>
 
-                        <Col span={12}>
+                        <Col>
                             <FormItem>
-                                <Button className="button-submit" type="primary">
-                                    <Link to={`/pagina-inicial`}>Voltar</Link>
+                                <Button className="button-submit">
+                                    <Link to={`/`}>Voltar</Link>
                                 </Button>
                             </FormItem>
                         </Col>

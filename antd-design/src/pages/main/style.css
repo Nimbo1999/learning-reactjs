@@ -1,3 +1,11 @@
+.client-list{
+    margin-top: 64px;
+}
+
+.client-list .meu_button{
+    width: 100%;
+}
+
 .client-list article {
     background: #fff;
     border: 1px solid #ddd;

@@ -55,8 +55,24 @@ class PaginaInicial extends React.Component{
                 width: 200
             },
             {
-                title: 'ID',
+                title: 'Opções',
                 dataIndex: 'id',
+                render: (id) => {
+                    return (
+                    <Row>
+                        <Col xs={12}>
+                            <Button>
+                                <Link to={`/cliente/${id}`}>Acessar Cliente</Link>
+                            </Button>
+                        </Col>
+                        <Col xs={12}>
+                            <Button>
+                                <Link to={`/cliente/${id}`}>Editar Cliente</Link>
+                            </Button>
+                        </Col>
+                    </Row>
+                    )
+                },
                 key: 'perfil',
                 width: 200
             },
@@ -82,7 +98,7 @@ class PaginaInicial extends React.Component{
                             </Menu.Item>
 
                             <Menu.Item className="menu-item">
-                                <Link to="/">
+                                <Link to="/clientes">
                                     <Icon type="profile" />
                                     Clientes
                                 </Link>

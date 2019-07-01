@@ -28,7 +28,9 @@ class Cliente extends Component{
 
         return (
             <Row className="client-info">
-                <img src={clientes.imagem} alt="Imagem do cliente" />
+                <span>
+                    <img src={clientes.imagem} alt="Imagem do cliente" />
+                </span>
                 <h1>Nome: {clientes.nome}</h1>
                 <p>Endereço: {clientes.endereco}</p>
                 <p>Idade: {clientes.idade}</p>

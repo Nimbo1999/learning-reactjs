@@ -2,11 +2,18 @@
 
 .client-info {
     max-width: 700px;
-    margin: 20px auto 0;
+    margin: 64px auto 0;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     border: 1px solid #ddd;
+}
+
+.client-info span{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .client-info h1 {
