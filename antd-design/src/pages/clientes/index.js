@@ -14,7 +14,7 @@ class Cliente extends React.Component{
     async componentDidMount(){
         const { id } = this.props.match.params;
 
-        const response = await api.get(`/clientes/${id}/`);
+        const response = await api.get(`/api/clientes/${id}/`);
 
         this.setState({
             clientes: response.data
@@ -25,21 +25,22 @@ class Cliente extends React.Component{
 
     render(){
         const { clientes } = this.state
+        const baseurl = "http://localhost:8000";
 
         return (
             <Row className="client-info">
                 <span>
-                    {clientes.imagem === null ? <></> : <img src={clientes.imagem} alt="Imagem do cliente" /> }
+                    {clientes.imagem === null ? <></> : <img src={baseurl + clientes.imagem} alt="Imagem do cliente" /> }
                 </span>
                 <h2 style={{textAlign:"center"}}>Cliente info</h2>
                 <Col sm={8}>
-                    <p>Nome: {clientes.nome}</p>
+                    <p><b>Nome:</b> {clientes.nome}</p>
                 </Col>
                 <Col sm={8}>
-                    <p>Endereço: {clientes.endereco}</p>
+                    <p><b>Endereço:</b> {clientes.endereco}</p>
                 </Col>
                 <Col sm={8}>
-                    <p>Idade: {clientes.idade}</p>
+                    <p><b>Idade:</b> {clientes.idade}</p>
                 </Col>
                 <Button type="primary" block>
                     <Link to={'/'}>Voltar</Link>

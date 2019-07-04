@@ -27,8 +27,14 @@ class CadastrarCliente extends Component {
 
     postCliente = async () =>{
         try{
-            const data = this.state
-            const response = await api.post('/clientes/', data)
+            let data = new FormData();
+            data.append('nome', this.state.nome)
+            data.append('endereco', this.state.endereco)
+            data.append('idade', this.state.idade)
+            if(this.state.imagem){
+                data.append('imagem', this.state.imagem)
+            }
+            const response = await api.post('/api/clientes/', data, {headers:{'content-type': 'multipart/form-data'}})
             console.log('Returned data: ', response)
             notification.open({
                 message: 'Sucesso',
@@ -54,7 +60,7 @@ class CadastrarCliente extends Component {
     }
 
     fileSelectHandles = event =>{
-        console.log(event.target.files[0]);
+        this.setState({imagem: event.target.files[0]})
     }
 
     render(){
@@ -69,7 +75,7 @@ class CadastrarCliente extends Component {
 
                 <h1>Cadastro de Clientes</h1>
 
-                <Form labelCol={{ span: 4 }} wrapperCol={{ span: 16 }} onSubmit={this.submitHandler}>
+                <Form labelCol={{ span: 4 }} wrapperCol={{ span: 16 }} onSubmit={this.submitHandler} method="post">
                     
                     <Form.Item label="Nome:">
                         <Input name="nome" value={nome} onChange={this.changeHandler} />
@@ -78,10 +84,10 @@ class CadastrarCliente extends Component {
                         <Input name="endereco" value={endereco} onChange={this.changeHandler} />
                     </Form.Item>
                     <Form.Item label="Idade:">
-                        <Input name="idade" value={idade} onChange={this.changeHandler} />
+                        <Input name="idade" type="number" value={idade} onChange={this.changeHandler} />
                     </Form.Item>
                     
-                    <input type="file" name="imagem" onChange={this.fileSelectHandles} hidden />
+                    <input type="file" name="imagem" onChange={this.fileSelectHandles} />
                      
                      <Row gutter={34} style={{padding: '0px 20px'}}>
                         <Col xs={12}>

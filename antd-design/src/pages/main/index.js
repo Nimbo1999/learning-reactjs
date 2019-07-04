@@ -15,7 +15,7 @@ class ClientList extends Component {
     }
 
     loadClients = async () => {
-        const response = await api.get("/clientes/")
+        const response = await api.get("/api/clientes/")
         
         this.setState({
             clientes: response.data
@@ -25,7 +25,8 @@ class ClientList extends Component {
     render(){
 
         const { clientes } = this.state
-        const userDefault = "http://localhost:8000/media/media/2019/05/30/user.jpg";
+        const userDefault = "http://localhost:8000/media/clientes/user.jpg";
+        const baseurl = "http://localhost:8000";
 
         return (
             <div className="client-list">
@@ -45,7 +46,7 @@ class ClientList extends Component {
                                 <article>
                                     <span>
                                         <img style={{width:'50px', height:'50px'}}
-                                            src={client.imagem === null ? userDefault : client.imagem}
+                                            src={client.imagem === null ? userDefault : baseurl + client.imagem}
                                             alt="imagem do usuário"
                                         />
                                     </span>

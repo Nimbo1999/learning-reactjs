@@ -3,6 +3,8 @@ import './style.css';
 import { Menu, Icon, Col, Row, Layout, Breadcrumb, Table, Button, notification } from 'antd';
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart, faEnvelope, faChartArea, faBell, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 
 class PaginaInicial extends React.Component{
@@ -17,7 +19,7 @@ class PaginaInicial extends React.Component{
     }
 
     loadClients = async () => {
-        const response = await api.get("/clientes/")
+        const response = await api.get("/api/clientes/")
         
         this.setState({
             clientes: response.data
@@ -154,16 +156,80 @@ class PaginaInicial extends React.Component{
                         <Content className="conteudo">
                             <Row gutter={8}>
                                 <Col span={6}>
-                                    <div className="Quadrado1"></div>
+                                    <Row className="Quadrado" style={{color:"#fff"}}>
+                                        <Col xs={12}>
+                                            <h1 className="my-h1">Produtos</h1>
+                                        </Col>
+                                        <Col xs={12}>
+                                            <FontAwesomeIcon size="3x"
+                                                icon={faShoppingCart}
+                                                transform={{ rotate: 330 }}
+                                                style={{marginRight:"20px", marginTop: "10px"}}
+                                                flip="horizontal"
+                                                pull="right"/>
+                                        </Col>
+                                        <hr className="my-hr"/>
+                                        <Col style={{textAlign:"center"}}>
+                                            <a className="my-a" href="https://lopesmatheus.com">Acessar Conteúdo <FontAwesomeIcon icon={faChevronRight}/></a>
+                                        </Col>
+                                    </Row>
                                 </Col>
                                 <Col span={6}>
-                                    <div className="Quadrado2"></div>
+                                    <Row className="Quadrado" style={{color:"#fff", backgroundColor:"#055"}}>
+                                        <Col xs={12}>
+                                            <h1 className="my-h1">Mensagens</h1>
+                                        </Col>
+                                        <Col xs={12}>
+                                            <FontAwesomeIcon size="3x"
+                                                icon={faEnvelope}
+                                                transform={{ rotate: 330 }}
+                                                style={{marginRight:"20px", marginTop: "8px"}}
+                                                flip="horizontal"
+                                                pull="right"/>
+                                        </Col>
+                                        <hr className="my-hr"/>
+                                        <Col style={{textAlign:"center"}}>
+                                            <a className="my-a" href="https://lopesmatheus.com">Acessar Conteúdo <FontAwesomeIcon icon={faChevronRight}/></a>
+                                        </Col>
+                                    </Row>
                                 </Col>
                                 <Col span={6}>
-                                    <div className="Quadrado3"></div>
+                                    <Row className="Quadrado" style={{color:"#fff", backgroundColor:"#CD853F"}}>
+                                        <Col xs={12}>
+                                            <h1 className="my-h1">Gráficos</h1>
+                                        </Col>
+                                        <Col xs={12}>
+                                            <FontAwesomeIcon size="3x"
+                                                icon={faChartArea}
+                                                transform={{ rotate: 330 }}
+                                                style={{marginRight:"20px"}}
+                                                flip="horizontal"
+                                                pull="right"/>
+                                        </Col>
+                                        <hr className="my-hr"/>
+                                        <Col style={{textAlign:"center"}}>
+                                            <a className="my-a" href="https://lopesmatheus.com">Acessar Conteúdo <FontAwesomeIcon icon={faChevronRight}/></a>
+                                        </Col>
+                                    </Row>
                                 </Col>
                                 <Col span={6}>
-                                    <div className="Quadrado4"></div>
+                                    <Row className="Quadrado" style={{color:"#fff", backgroundColor:"#696969"}}>
+                                        <Col xs={12}>
+                                            <h1 className="my-h1">Notificações</h1>
+                                        </Col>
+                                        <Col xs={12}>
+                                            <FontAwesomeIcon size="3x"
+                                                icon={faBell}
+                                                transform={{ rotate: 330 }}
+                                                style={{marginRight:"20px", marginTop: "5px"}}
+                                                flip="horizontal"
+                                                pull="right"/>
+                                        </Col>
+                                        <hr className="my-hr"/>
+                                        <Col style={{textAlign:"center"}}>
+                                            <a className="my-a" href="https://lopesmatheus.com">Acessar Conteúdo <FontAwesomeIcon icon={faChevronRight}/></a>
+                                        </Col>
+                                    </Row>
                                 </Col>
                             </Row>
                             

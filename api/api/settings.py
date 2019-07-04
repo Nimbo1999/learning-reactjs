@@ -131,4 +131,4 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "{}/media".format(BASE_DIR)
+MEDIA_ROOT = "img"
